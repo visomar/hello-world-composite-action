@@ -1,9 +1,23 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  hello_world_job_linux:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to say hello in Linux
+    steps:
+      - uses: actions/checkout@v4
+      - id: foo
+        uses: visomar/hello-world-composite-action@v1.1
+        with:
+          who-to-greet: 'Vicente'
+      - run: echo random-number "$RANDOM_NUMBER"
+        shell: bash
+        env:
+          RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
+
+  hello_world_job_windows:
+    runs-on: windows-latest
+    name: A job to say hello in Windows
     steps:
       - uses: actions/checkout@v4
       - id: foo
