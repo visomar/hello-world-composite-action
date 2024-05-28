@@ -29,6 +29,12 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
+    - name: Obtain and show the release version of the project
+      run: echo "Release [$GITHUB_RELEASE_TAG] created for current project"
+      shell: bash
+      env:
+        GITHUB_RELEASE_TAG: ${{ github.event.release.tag_name }}
+
     - name: Run goodbye.sh
       run: goodbye.sh
       shell: bash
