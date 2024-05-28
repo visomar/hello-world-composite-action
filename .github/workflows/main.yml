@@ -1,6 +1,6 @@
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   hello_world_job_linux:
