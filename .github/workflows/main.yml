@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: visomar/hello-world-composite-action@v1.1
+        uses: visomar/hello-world-composite-action@v1.2
         with:
           who-to-greet: 'Vicente'
       - run: echo random-number "$RANDOM_NUMBER"
@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: visomar/hello-world-composite-action@v1.1
+        uses: visomar/hello-world-composite-action@v1.2
         with:
           who-to-greet: 'Vicente'
       - run: echo random-number "$RANDOM_NUMBER"
