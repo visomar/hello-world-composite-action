@@ -37,6 +37,18 @@ jobs:
     steps:
       - name: Checkout current repository
         uses: actions/checkout@v4
+      - name: Load some configuration from YAML
+        uses: doughepi/yaml-env-action
+        with:
+          files: ./.github/workflows/config.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+      - name: Test of config variables:
+        run: |
+          echo "Simple key: ${{ env.YEPE }}"
+          echo "Nested key: ${{ env.MY_VALUE }}"
+          echo "Camel case key: ${{ env.FIRST_KEY }}"
+          echo "Kebab case key: ${{ env.SECOND_KEY }}"
+          echo "Snake case key: ${{ env.THIRD_KEY }}"
+        shell: bash
       - name: Run steps in local action
         uses: ./my-local-action
         with:
