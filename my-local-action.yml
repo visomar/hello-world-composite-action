@@ -1,0 +1,34 @@
+name: 'My Local Action'
+description: 'Custom steps to perform from a local action in the same repo as the workflow'
+inputs:
+  git-tag-release:
+    description: 'The git tag that was assigned to the release'
+    required: true
+outputs:
+  output-folder:
+    description: 'Folder in which result files will be put'
+    value: '../output-folder'
+runs:
+  using: 'composite'
+  steps:
+    - name: Print the path
+      run: pwd
+      shell: bash
+
+    - name: List the current folder
+      run: ls -l .
+      shell: bash
+
+    - name: Show current branch
+      run: git rev-parse --short HEAD
+      shell: bash
+
+    - name: Copy file into output folder
+      run: |
+        echo "Copying a file into $OUTPUT_FOLDER"
+        cp ./dummy1.txt $OUTPUT_FOLDER
+      shell: bash
+      env:
+        OUTPUT_FOLDER: ${{ outputs.output-folder }}
+        GIT_TAG_RELEASE: ${{ inputs.git-tag-release }}
+

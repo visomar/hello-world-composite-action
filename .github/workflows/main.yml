@@ -30,3 +30,15 @@ jobs:
         shell: bash
         env:
           RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
+
+  my_custom_local_action_used:
+    runs-on: ubuntu-latest
+    name: A job to test local action
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+      - name: Run steps in local action
+        uses: ./my-local-action.yml
+        with:
+          git-tag-release: ${{ github.event.release.tag_name }}
+
