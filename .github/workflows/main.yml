@@ -38,7 +38,7 @@ jobs:
       - name: Checkout current repository
         uses: actions/checkout@v4
       - name: Run steps in local action
-        uses: ./my-local-action.yml
+        uses: ./my-local-action
         with:
           git-tag-release: ${{ github.event.release.tag_name }}
 
