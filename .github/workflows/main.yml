@@ -38,7 +38,7 @@ jobs:
       - name: Checkout current repository
         uses: actions/checkout@v4
       - name: Load some configuration from YAML
-        uses: doughepi/yaml-env-action
+        uses: doughepi/yaml-env-action@v1.0.0
         with:
           files: ./.github/config/config.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
       - name: Test of config variables
