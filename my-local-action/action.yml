@@ -27,14 +27,17 @@ runs:
       id: copy-files-in-output
       run: |
         echo "Copying a file into the output folder"
-        cd ..
-        mkdir output-folder
-        cd output-folder
+        mkdir -p ../output-folder && cp dummy1.txt ../output-folder/dummy1.txt
+        cd ../output-folder
         OUTPUT_FOLDER=$(pwd)
-        cp $GITHUB_ACTION_PATH/dummy1.txt $OUTPUT_FOLDER/dumm1.txt
         echo "output-folder=${OUTPUT_FOLDER}" >> $GITHUB_OUTPUT
       shell: bash
+
+    - name: Grab input and check working path
+      run: |
+        pwd
+        echo "The published tag release is $GIT_TAG_RELEASE"
+      shell: bash  
       env:
-        GITHUB_ACTION_PATH: ${{ github.action_path }}
         GIT_TAG_RELEASE: ${{ inputs.git-tag-release }}
 
