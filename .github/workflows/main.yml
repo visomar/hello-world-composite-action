@@ -41,7 +41,7 @@ jobs:
         uses: doughepi/yaml-env-action
         with:
           files: ./.github/config/config.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
-      - name: Test of config variables:
+      - name: Test of config variables
         run: |
           echo "Simple key: ${{ env.YEPE }}"
           echo "Nested key: ${{ env.MY_VALUE }}"
