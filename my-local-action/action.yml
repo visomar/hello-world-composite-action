@@ -7,7 +7,7 @@ inputs:
 outputs:
   output-folder:
     description: 'Folder in which result files will be put'
-    value: '../output-folder'
+    value: ${{ steps.copy-files-in-output.outputs.output-folder }}
 runs:
   using: 'composite'
   steps:
@@ -24,11 +24,17 @@ runs:
       shell: bash
 
     - name: Copy file into output folder
+      id: copy-files-in-output
       run: |
-        echo "Copying a file into $OUTPUT_FOLDER"
-        cp ./dummy1.txt $OUTPUT_FOLDER
+        echo "Copying a file into the output folder"
+        cd ..
+        mkdir output-folder
+        cd output-folder
+        OUTPUT_FOLDER=$(pwd)
+        cp $GITHUB_ACTION_PATH/dummy1.txt $OUTPUT_FOLDER/dumm1.txt
+        echo "output-folder=${OUTPUT_FOLDER}" >> $GITHUB_OUTPUT
       shell: bash
       env:
-        OUTPUT_FOLDER: ${{ outputs.output-folder }}
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
         GIT_TAG_RELEASE: ${{ inputs.git-tag-release }}
 
