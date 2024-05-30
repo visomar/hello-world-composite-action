@@ -54,6 +54,7 @@ jobs:
         uses: ./my-local-action
         with:
           git-tag-release: ${{ github.event.release.tag_name }}
+          condition: true
       - name: Use output from previous step to list files
         run: |
           ls -la $FOLDER
