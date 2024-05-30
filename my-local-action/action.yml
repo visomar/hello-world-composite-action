@@ -3,7 +3,7 @@ description: 'Custom steps to perform from a local action in the same repo as th
 inputs:
   condition:
     description: 'A condition that makes a step execute or not'
-    default: false
+    default: 'false'
   git-tag-release:
     description: 'The git tag that was assigned to the release'
     required: true
@@ -27,12 +27,12 @@ runs:
       shell: bash
 
     - name: Conditional step
-      if: inputs.condition == true
+      if: inputs.condition == 'true'
       run: echo "THIS STEP WAS INDEED EXECUTED"
       shell: bash
 
     - name: Another conditional step
-      if: inputs.condition != true
+      if: inputs.condition != 'true'
       run: echo "THE PREVIOUS STEP WAS SKIPPED - and we executed this one instead"
       shell: bash
 
