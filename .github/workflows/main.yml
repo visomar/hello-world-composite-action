@@ -50,7 +50,16 @@ jobs:
           echo "Snake case key: ${{ env.THIRD_KEY }}"
         shell: bash
       - name: Run steps in local action
+        id: move-files
         uses: ./my-local-action
         with:
           git-tag-release: ${{ github.event.release.tag_name }}
+      - name: Use output from previous step to list files
+        run: |
+          ls -la $FOLDER
+          cat $FOLDER/dummy1.txt
+        shell: bash
+        env:
+          FOLDER: ${{ steps.move-files.outputs.output-folder }}
+
 
