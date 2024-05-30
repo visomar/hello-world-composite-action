@@ -54,3 +54,8 @@ runs:
       env:
         GIT_TAG_RELEASE: ${{ inputs.git-tag-release }}
 
+    - name: Dump Github Context
+      env: 
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
