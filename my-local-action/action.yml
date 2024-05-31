@@ -63,3 +63,5 @@ runs:
     - name: Run goodbye.sh
       run: ./goodbye.sh
       shell: bash
+      env:
+        NAME: 'Vicente'
