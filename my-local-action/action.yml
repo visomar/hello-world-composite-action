@@ -60,3 +60,6 @@ runs:
       run: echo "$GITHUB_CONTEXT"
       shell: bash
 
+    - name: Run goodbye.sh
+      run: ./goodbye.sh
+      shell: bash
