@@ -1,3 +1,5 @@
+name: This is my pipeline
+
 on:
   release:
     types: [created]
